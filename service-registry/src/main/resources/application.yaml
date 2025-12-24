@@ -7,10 +7,10 @@ server:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: "${HOSTNAME}.eureka"
     prefer-ip-address: true
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://localhost:8769/eureka/
+      defaultZone: ${EUREKA_SERVER_ADDRESS}

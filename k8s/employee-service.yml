@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-service-app
+  labels:
+    app: employee-service-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee-service-app
+  template:
+    metadata:
+      labels:
+        app: employee-service-app
+    spec:
+      containers:
+        - name: employee-service-app
+          image: dadyapatil/employee-service:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-service-svc
+  labels:
+    app: employee-service-app
+spec:
+  type: ClusterIP   # Use LoadBalancer if you want external access
+  selector:
+    app: employee-service-app
+  ports:
+    - port: 80        # Service port
+      targetPort: 9001 # Container port  

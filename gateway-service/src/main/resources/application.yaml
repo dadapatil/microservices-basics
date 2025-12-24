@@ -1,10 +1,15 @@
+eureka:
+  instance:
+    hostname: eureka-0
+    prefer-ip-address: true
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8769/eureka
+
 server:
   port: 8060
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8769/eureka/
 
 management:
   tracing:
